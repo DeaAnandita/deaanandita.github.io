@@ -492,42 +492,6 @@ main {
 
 .navbar-link.active { color: var(--orange-yellow-crayola); }
 
-
-/* FIX NAVBAR CLICKABLE DI MOBILE - Sidebar tidak blokir touch */
-@media (max-width: 1023px) {  /* target mobile & tablet kecil, sebelum navbar jadi top-fixed di 1024px+ */
-  .sidebar {
-    pointer-events: none !important;           /* touch lolos ke belakang sidebar */
-    z-index: 1 !important;                     /* tetap rendah */
-  }
-
-  .sidebar.active {
-    pointer-events: auto !important;           /* saat dibuka (show contacts), baru bisa klik di dalam sidebar */
-  }
-
-  .navbar {
-    pointer-events: auto !important;
-    z-index: 100 !important;                   /* jauh lebih tinggi dari sidebar */
-  }
-
-  .navbar-list,
-  .navbar-item,
-  .navbar-link {
-    pointer-events: auto !important;
-  }
-
-  /* Tambahan: percepat respons touch + hilangkan delay */
-  .navbar-link {
-    touch-action: manipulation;
-  }
-
-  /* Pastikan main-content tidak terganggu */
-  .main-content {
-    position: relative;
-    z-index: 10 !important;
-  }
-}
-
-
 /*-----------------------------------*\
   #ABOUT
 \*-----------------------------------*/
@@ -1963,4 +1927,48 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
+}
+
+/* ============================================= */
+/* FIX KHUSUS: NAVBAR BOTTOM BISA DIKLIK DI MOBILE */
+/* Sidebar jangan blokir touch ke navbar bottom  */
+/* ============================================= */
+
+@media (max-width: 1023px) {  /* sebelum navbar pindah ke top di 1024px+ */
+
+  /* Sidebar sepenuhnya tidak tangkap sentuhan kecuali saat active */
+  .sidebar,
+  .sidebar * {  /* termasuk semua anaknya seperti .sidebar-info_more, contacts-list, dll */
+    pointer-events: none !important;
+  }
+
+  .sidebar.active,
+  .sidebar.active * {
+    pointer-events: auto !important;  /* agar tombol Show Contacts & kontak bisa diklik */
+  }
+
+  /* Navbar & linknya prioritas tertinggi */
+  .navbar,
+  .navbar-list,
+  .navbar-item,
+  .navbar-link {
+    pointer-events: auto !important;
+    z-index: 9999 !important;  /* super tinggi supaya aman */
+  }
+
+  /* Percepat respons touch (hilangkan delay 300ms di mobile) */
+  .navbar-link {
+    touch-action: manipulation !important;
+  }
+
+  /* Pastikan main-content tidak ikut terganggu */
+  .main-content {
+    position: relative;
+    z-index: 10 !important;
+  }
+
+  /* Opsional: tambah padding bottom supaya konten tidak tertutup navbar */
+  body {
+    padding-bottom: 80px !important;  /* sesuaikan tinggi navbar + shadow */
+  }
 }
