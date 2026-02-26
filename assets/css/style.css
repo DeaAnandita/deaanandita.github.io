@@ -354,6 +354,11 @@ main {
   border-radius: 8px;
 }
 
+.info-content .job {
+    display: flex;
+    flex-direction: column; /* bikin ke bawah */
+    gap: 5px; /* jarak antar teks */
+  }
 .info_more-btn {
   position: absolute;
   top: -15px;
@@ -870,7 +875,39 @@ main {
   border-radius: inherit;
 }
 
+.skills-container {
+  padding: 20px;
+  display: grid;
+  gap: 25px;
+}
 
+.skill-category h5 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tags span {
+  background: var(--jet);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--light-gray);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: 0.3s ease;
+  cursor: default;
+}
+
+.skill-tags span:hover {
+  background: var(--text-gradient-yellow);
+  color: #000;
+  transform: translateY(-3px);
+}
 
 
 
@@ -1348,6 +1385,11 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .info-content .title { padding: 5px 18px; }
 
+  .info-content .job {
+    display: flex;
+    flex-direction: column; /* bikin ke bawah */
+    gap: 5px; /* jarak antar teks */
+  }
   .info_more-btn {
     top: -30px;
     right: -30px;
@@ -1846,6 +1888,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .info-content .title { margin: auto; }
+  .info-content .job {
+    display: flex;
+    flex-direction: column; /* bikin ke bawah */
+    gap: 5px; /* jarak antar teks */
+  }
 
   .info_more-btn { display: none; }
 
