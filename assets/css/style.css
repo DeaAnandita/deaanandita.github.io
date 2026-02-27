@@ -1930,45 +1930,53 @@ textarea.form-input::-webkit-resizer { display: none; }
 }
 
 /* ============================================= */
-/* FIX KHUSUS: NAVBAR BOTTOM BISA DIKLIK DI MOBILE */
-/* Sidebar jangan blokir touch ke navbar bottom  */
+/* FIX KHUSUS: NAVBAR BOTTOM BISA DIKLIK DI MOBILE + TOM BOL SHOW CONTACTS JUGA BISA */
+/* Sidebar jangan blokir touch, tapi tombol toggle sidebar tetap hidup */
 /* ============================================= */
+@media (max-width: 1023px) {
 
-@media (max-width: 1023px) {  /* sebelum navbar pindah ke top di 1024px+ */
-
-  /* Sidebar sepenuhnya tidak tangkap sentuhan kecuali saat active */
-  .sidebar,
-  .sidebar * {  /* termasuk semua anaknya seperti .sidebar-info_more, contacts-list, dll */
+  /* Sidebar secara default tidak tangkap sentuhan (biar navbar bottom aman) */
+  .sidebar {
     pointer-events: none !important;
+    z-index: 1 !important;
   }
 
-  .sidebar.active,
-  .sidebar.active * {
-    pointer-events: auto !important;  /* agar tombol Show Contacts & kontak bisa diklik */
+  /* KECUALIKAN tombol Show Contacts & elemen penting lainnya agar tetap bisa diklik */
+  .info_more-btn,
+  .info_more-btn *,
+  .sidebar-info_more.active .contacts-list,     /* kontak saat dibuka */
+  .sidebar-info_more.active .social-list {
+    pointer-events: auto !important;
   }
 
-  /* Navbar & linknya prioritas tertinggi */
+  /* Sidebar saat active (dibuka) → izinkan semua interaksi di dalamnya */
+  .sidebar.active {
+    pointer-events: auto !important;
+  }
+
+  /* Navbar prioritas tertinggi (tetap bisa diklik) */
   .navbar,
   .navbar-list,
   .navbar-item,
   .navbar-link {
     pointer-events: auto !important;
-    z-index: 9999 !important;  /* super tinggi supaya aman */
+    z-index: 9999 !important;
   }
 
-  /* Percepat respons touch (hilangkan delay 300ms di mobile) */
-  .navbar-link {
+  /* Percepat respons touch di mobile */
+  .navbar-link,
+  .info_more-btn {
     touch-action: manipulation !important;
   }
 
-  /* Pastikan main-content tidak ikut terganggu */
+  /* Pastikan konten utama aman */
   .main-content {
     position: relative;
     z-index: 10 !important;
   }
 
-  /* Opsional: tambah padding bottom supaya konten tidak tertutup navbar */
+  /* Ruang bawah agar konten tidak ketutup navbar */
   body {
-    padding-bottom: 80px !important;  /* sesuaikan tinggi navbar + shadow */
+    padding-bottom: 80px !important;
   }
 }
