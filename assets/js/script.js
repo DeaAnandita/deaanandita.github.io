@@ -116,4 +116,29 @@ navLinks.forEach(link => {
   });
 });
 
+// FIX TOUCH NAVBAR DI MOBILE REAL DEVICE
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+  console.log("Mobile touch device detected - applying touch fix");
+
+  const navLinks = document.querySelectorAll('.navbar-link[data-nav-link]');
+
+  navLinks.forEach(link => {
+    link.addEventListener('touchstart', function(e) {
+      // Cegah default touch agar tidak double event
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Trigger click manual
+      this.click();
+
+      console.log("Touchstart on navbar link: " + this.textContent);
+    }, { passive: false });  // penting: passive false agar preventDefault works
+
+    // Opsional: tambah touchend untuk lebih akurat
+    link.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      this.click();
+    }, { passive: false });
+  });
+}
 // Opsional: pastikan halaman About tetap active saat pertama load (sudah ada di HTML)

@@ -1930,53 +1930,54 @@ textarea.form-input::-webkit-resizer { display: none; }
 }
 
 /* ============================================= */
-/* FIX KHUSUS: NAVBAR BOTTOM BISA DIKLIK DI MOBILE + TOM BOL SHOW CONTACTS JUGA BISA */
-/* Sidebar jangan blokir touch, tapi tombol toggle sidebar tetap hidup */
+/* FIX NAVBAR + SHOW CONTACTS BISA KLIK DI HP + ANIMASI SIDEBAR TETAP ADA */
 /* ============================================= */
 @media (max-width: 1023px) {
 
-  /* Sidebar secara default tidak tangkap sentuhan (biar navbar bottom aman) */
+  /* Sidebar default: izinkan interaksi minimal untuk tombol toggle & animasi */
   .sidebar {
-    pointer-events: none !important;
-    z-index: 1 !important;
+    pointer-events: auto !important;  /* kembalikan auto supaya animasi transition jalan */
+    z-index: 5 !important;           /* jangan terlalu tinggi biar navbar tetap di atas */
   }
 
-  /* KECUALIKAN tombol Show Contacts & elemen penting lainnya agar tetap bisa diklik */
-  .info_more-btn,
-  .info_more-btn *,
-  .sidebar-info_more.active .contacts-list,     /* kontak saat dibuka */
-  .sidebar-info_more.active .social-list {
-    pointer-events: auto !important;
-  }
-
-  /* Sidebar saat active (dibuka) → izinkan semua interaksi di dalamnya */
-  .sidebar.active {
-    pointer-events: auto !important;
-  }
-
-  /* Navbar prioritas tertinggi (tetap bisa diklik) */
+  /* Prioritaskan navbar bottom supaya tetap bisa diklik di atas sidebar */
   .navbar,
   .navbar-list,
   .navbar-item,
   .navbar-link {
     pointer-events: auto !important;
     z-index: 9999 !important;
-  }
-
-  /* Percepat respons touch di mobile */
-  .navbar-link,
-  .info_more-btn {
     touch-action: manipulation !important;
   }
 
-  /* Pastikan konten utama aman */
-  .main-content {
-    position: relative;
-    z-index: 10 !important;
+  /* Tombol Show Contacts selalu bisa diklik */
+  .info_more-btn,
+  .info_more-btn * {
+    pointer-events: auto !important;
+    z-index: 10000 !important;  /* pastikan tombol di atas kalau overlap */
   }
 
-  /* Ruang bawah agar konten tidak ketutup navbar */
+  /* Saat sidebar dibuka, izinkan semua interaksi di dalamnya */
+  .sidebar.active .sidebar-info_more,
+  .sidebar.active .contacts-list,
+  .sidebar.active .social-list {
+    pointer-events: auto !important;
+  }
+
+  /* Pastikan transisi tetap jalan mulus */
+  .sidebar,
+  .sidebar-info_more {
+    transition: max-height var(--transition-2), opacity var(--transition-2) !important;
+  }
+
+  /* Hilangkan delay touch & highlight aneh di mobile */
+  .navbar-link,
+  .info_more-btn {
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation !important;
+  }
+
   body {
-    padding-bottom: 80px !important;
+    padding-bottom: 90px !important;
   }
 }
