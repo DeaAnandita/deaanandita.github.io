@@ -1981,3 +1981,99 @@ textarea.form-input::-webkit-resizer { display: none; }
     padding-bottom: 90px !important;
   }
 }
+
+/* Contact Section - Modern & Clean Version */
+.contact-intro {
+  color: var(--light-gray);
+  font-size: var(--fs-5);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--border-gradient-onyx);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all var(--transition-1);
+  box-shadow: var(--shadow-2);
+}
+
+.contact-method:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-3);
+  background: var(--bg-gradient-yellow-2);
+}
+
+.method-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--jet);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--orange-yellow-crayola);
+  flex-shrink: 0;
+}
+
+.whatsapp .method-icon { background: #25D366; color: white; }
+.email .method-icon { background: var(--orange-yellow-crayola); color: var(--smoky-black); }
+.instagram .method-icon { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
+
+.method-content {
+  flex: 1;
+}
+
+.method-title {
+  color: var(--white-2);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-500);
+  margin-bottom: 4px;
+}
+
+.method-detail {
+  color: var(--light-gray-70);
+  font-size: var(--fs-6);
+}
+
+.method-action {
+  color: var(--orange-yellow-crayola);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  margin-top: 6px;
+  display: block;
+}
+
+.contact-note {
+  color: var(--light-gray-70);
+  font-size: var(--fs-6);
+  text-align: center;
+  margin-top: 30px;
+  font-style: italic;
+}
+
+/* Responsive adjustment */
+@media (min-width: 580px) {
+  .contact-methods {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contact-method {
+    flex: 1 1 45%;
+    max-width: 400px;
+  }
+}
