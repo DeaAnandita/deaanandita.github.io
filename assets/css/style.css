@@ -2028,10 +2028,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   flex-shrink: 0;
 }
 
-.whatsapp .method-icon { background: #25D366; color: white; }
-.email .method-icon { background: var(--orange-yellow-crayola); color: var(--smoky-black); }
-.instagram .method-icon { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
-
 .method-content {
   flex: 1;
 }
@@ -2076,4 +2072,19 @@ textarea.form-input::-webkit-resizer { display: none; }
     flex: 1 1 45%;
     max-width: 400px;
   }
+}
+.experience-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.experience-badge {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #6366f1;
+  border: 1px solid rgba(99, 102, 241, 0.3);
 }
