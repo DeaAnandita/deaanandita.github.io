@@ -2088,3 +2088,27 @@ textarea.form-input::-webkit-resizer { display: none; }
   color: #6366f1;
   border: 1px solid rgba(99, 102, 241, 0.3);
 }
+
+.last-update-section {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.last-update {
+  font-size: 13px;
+  color: var(--light-gray-70);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 580px) {
+  .last-update-section {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .last-update {
+    font-size: 12px;
+  }
+} 
